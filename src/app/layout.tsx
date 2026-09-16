@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 const inter = Inter({
@@ -12,42 +11,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Abubakar Abdulrahim — Software Engineer & Mobile App Architect",
+  title: "Abubakar Abdulrahim — Software Engineer & Mobile Architect",
   description:
-    "Award-class portfolio of Abubakar Abdulrahim, Software Engineer & Mobile App Developer specializing in Flutter, Firebase, React.js, and Django REST APIs. Based in Kano, Nigeria.",
-  keywords: [
-    "Abubakar Abdulrahim",
-    "Software Engineer",
-    "Mobile App Developer",
-    "Flutter Developer",
-    "Firebase Architect",
-    "React Developer",
-    "Django REST",
-    "Kano Nigeria Software Engineer",
-    "Safetify App",
-    "Fintech Mobile Architecture",
-  ],
+    "Portfolio of Abubakar Abdulrahim. Software Engineer specializing in high-concurrency Flutter mobile architectures and resilient cloud systems. Based in Kano, Nigeria.",
   authors: [{ name: "Abubakar Abdulrahim", url: PERSONAL_INFO.github }],
   creator: "Abubakar Abdulrahim",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://abubakar-portfolio.vercel.app",
-    title: "Abubakar Abdulrahim — Software Engineer & Mobile App Architect",
+    title: "Abubakar Abdulrahim — Software Engineer & Mobile Architect",
     description:
-      "Specializing in zero-latency Flutter mobile architectures, real-time Firebase backends, and full-stack React/Django ecosystems.",
-    siteName: "Abubakar Abdulrahim Portfolio",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Abubakar Abdulrahim — Software Engineer & Mobile App Architect",
-    description:
-      "Specializing in zero-latency Flutter mobile architectures, real-time Firebase backends, and full-stack React/Django ecosystems.",
-    creator: "@AbubakarAbdulrahim",
-  },
-  robots: {
-    index: true,
-    follow: true,
+      "Specializing in Flutter, Firebase, React, and Django. Quantified production impact across fintech, emergency dispatch, and campus systems.",
   },
 };
 
@@ -68,7 +42,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange={false}
         >
-          <NoiseOverlay />
           {children}
         </ThemeProvider>
       </body>
