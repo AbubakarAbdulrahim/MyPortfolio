@@ -1,14 +1,8 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-
 interface SectionHeadingProps {
   index?: string;
   tag?: string;
   title: string;
   subtitle?: string;
-  align?: "left" | "center" | "right";
   className?: string;
 }
 
@@ -17,44 +11,25 @@ export function SectionHeading({
   tag,
   title,
   subtitle,
-  align = "left",
-  className,
+  className = "",
 }: SectionHeadingProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={cn(
-        "mb-12 md:mb-16",
-        align === "center" ? "text-center mx-auto max-w-3xl" : "max-w-3xl",
-        className
-      )}
-    >
-      <div
-        className={cn(
-          "flex items-center gap-2 mb-3 text-xs font-mono tracking-widest uppercase text-accent font-semibold",
-          align === "center" ? "justify-center" : "justify-start"
-        )}
-      >
-        {index && (
-          <span className="px-2 py-0.5 rounded bg-accent/10 border border-accent/25 text-accent">
-            {index}
-          </span>
-        )}
+    <div className={`mb-10 sm:mb-14 ${className}`}>
+      <div className="flex items-center gap-2 mb-2 text-xs font-mono tracking-wider text-muted uppercase">
+        {index && <span>{index}</span>}
+        {index && tag && <span>/</span>}
         {tag && <span>{tag}</span>}
       </div>
 
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground font-display leading-[1.12]">
+      <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
         {title}
       </h2>
 
       {subtitle && (
-        <p className="mt-4 text-base sm:text-lg text-foreground/70 leading-relaxed font-sans max-w-2xl">
+        <p className="mt-2 text-sm sm:text-base text-muted max-w-2xl leading-relaxed">
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 }
