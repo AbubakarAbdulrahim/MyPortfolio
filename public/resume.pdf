@@ -1,0 +1,55 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 520 >>
+stream
+BT
+/F1 20 Tf
+50 740 Td
+(Abubakar Abdulrahim - Curriculum Vitae) Tj
+/F1 12 Tf
+0 -30 Td
+(Software Engineer & Mobile App Architect) Tj
+0 -20 Td
+(Kano, Nigeria | abubakar.abdulrahim.dev@gmail.com | github.com/AbubakarAbdulrahim) Tj
+0 -35 Td
+(EXPERIENCE) Tj
+0 -20 Td
+(Flutter Developer - Tubali Fintech | Feb 2026 - Present) Tj
+0 -15 Td
+(Mobile Developer - Hausasoft Technologies | Dec 2025 - Present) Tj
+0 -35 Td
+(EDUCATION) Tj
+0 -20 Td
+(B.Sc. Information Technology - Bayero University Kano (CGPA 4.44/5.00)) Tj
+0 -15 Td
+(B.Sc. Computer Science - National Open University Nigeria) Tj
+0 -35 Td
+(KEY PROJECTS: Safetify (~2.1s alert latency), BUK Student App, Tubali OTP) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000010 00000 n 
+0000000060 00000 n 
+0000000117 00000 n 
+0000000234 00000 n 
+0000000806 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+887
+%%EOF
