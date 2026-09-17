@@ -8,9 +8,12 @@ import { ResumeModal } from "@/components/ui/ResumeModal";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 const NAV_LINKS = [
-  { name: "Work", href: "#work" },
+  { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
-  { name: "Stack", href: "#stack" },
+  { name: "Skills", href: "#skills" },
+  { name: "Case Studies", href: "#case-studies" },
+  { name: "Projects", href: "#projects" },
+  { name: "Education", href: "#education" },
   { name: "Notes", href: "#notes" },
   { name: "Contact", href: "#contact" },
 ];

@@ -15,7 +15,7 @@ export function WritingSection() {
   return (
     <section id="notes" className="py-20 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
       <SectionHeading
-        index="04"
+        index="08"
         tag="Engineering Notes"
         title="Technical Writing"
         subtitle="Architecture breakdowns from building real-time dispatch and production fintech authentication."
