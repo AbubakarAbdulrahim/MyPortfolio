@@ -24,7 +24,6 @@ export interface CaseStudy {
   approach: string[];
   architectureHighlights: string[];
   results: string[];
-  deviceType: 'iphone' | 'android' | 'desktop';
   screenFlows: {
     name: string;
     title: string;
@@ -38,18 +37,6 @@ export interface CaseStudy {
   liveUrl?: string;
 }
 
-export interface SecondaryProject {
-  id: string;
-  title: string;
-  description: string;
-  metrics?: string;
-  tags: string[];
-  category: 'Web App' | 'Automation & Tools' | 'Curriculum & Open Source';
-  impact: string;
-  link?: string;
-  github?: string;
-}
-
 export interface TimelineEntry {
   id: string;
   role: string;
@@ -57,7 +44,7 @@ export interface TimelineEntry {
   location: string;
   period: string;
   isCurrent: boolean;
-  type: 'Full-time' | 'Contract' | 'Leadership';
+  type: 'Full-time' | 'Internship' | 'Founder / Independent' | 'SIWES';
   summary: string;
   highlights: string[];
   technologies: string[];
@@ -67,17 +54,20 @@ export interface TimelineEntry {
   };
 }
 
-export interface SkillCategory {
-  title: string;
-  subtitle: string;
-  iconName: string;
-  skills: {
-    name: string;
-    highlight?: boolean;
-    level: 'Production Expert' | 'Advanced' | 'Core Competency';
-    context: string;
-    icon?: string;
-  }[];
+export interface SkillProgress {
+  skill: string;
+  category: 'Mobile' | 'Backend' | 'Frontend' | 'Databases & Cloud' | 'Tools & Engineering';
+  percentage: number;
+  context?: string;
+}
+
+export interface GitHubRepo {
+  name: string;
+  language: string | null;
+  description: string | null;
+  stars: number;
+  url: string;
+  homepage: string | null;
 }
 
 export interface EducationCertification {
@@ -101,14 +91,4 @@ export interface BlogPost {
   tags: string[];
   category: string;
   content: string;
-}
-
-export interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-  organization: string;
-  avatarUrl?: string;
-  relationship: string;
-  endorsementType: 'Architecture' | 'Delivery Speed' | 'Mobile Craftsmanship' | 'Mentorship';
 }

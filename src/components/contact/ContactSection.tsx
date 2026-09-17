@@ -1,19 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Download, Mail, ArrowUpRight, Copy, Check, AlertCircle, Loader2 } from "lucide-react";
+import { useForm, ValidationError } from "@formspree/react";
+import { Download, ArrowUpRight, Copy, Check, AlertCircle, Loader2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const endpoint =
-    process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ||
-    "https://formspree.io/f/abubakarabdulrahimibrahim@gmail.com";
+  const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || "mzezbayq";
+  const [state, handleSubmit, reset] = useForm(formId);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
@@ -21,50 +17,10 @@ export function ContactSection() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("submitting");
-    setErrorMessage(null);
-
-    try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          _replyto: formData.email,
-          _subject: `Portfolio Inquiry from ${formData.name}`,
-        }),
-      });
-
-      if (response.ok) {
-        setStatus("success");
-      } else {
-        const data = await response.json().catch(() => null);
-        const errorText =
-          data?.errors?.map((err: { message: string }) => err.message).join(", ") ||
-          data?.error ||
-          "Unable to deliver message right now. Please try again or email directly.";
-        setErrorMessage(errorText);
-        setStatus("error");
-      }
-    } catch (err) {
-      setErrorMessage(
-        "Network connection error. Please check your connection or email directly."
-      );
-      setStatus("error");
-    }
-  };
-
   return (
     <section id="contact" className="py-20 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
       <SectionHeading
-        index="05"
+        index="10"
         tag="Inquiries"
         title="Get in Touch"
         subtitle="Available for full-time engineering roles and high-value mobile contracts."
@@ -130,20 +86,19 @@ export function ContactSection() {
         {/* Right Column: Wired Formspree Form (7 cols) */}
         <div className="md:col-span-7">
           <div className="card p-6 sm:p-8">
-            {status === "success" ? (
+            {state.succeeded ? (
               <div className="py-8 text-center space-y-3">
                 <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto text-accent">
                   <Check className="w-4 h-4" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">Message Dispatched</h3>
                 <p className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
-                  Thank you, {formData.name || "there"}. Your message has been routed to Abubakar. You will receive a response within 24 hours.
+                  Thank you. Your message has been successfully routed to Abubakar via Formspree. You will receive a response within 24 hours.
                 </p>
                 <div className="pt-3">
                   <button
                     onClick={() => {
-                      setStatus("idle");
-                      setFormData({ name: "", email: "", message: "" });
+                      if (typeof reset === "function") reset();
                     }}
                     className="px-4 py-2 rounded-lg border border-surface-border text-xs font-mono text-muted hover:text-foreground transition-colors"
                   >
@@ -153,13 +108,13 @@ export function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {status === "error" && errorMessage && (
+                {state.errors && state.errors.getFormErrors && state.errors.getFormErrors().length > 0 && (
                   <div className="p-3.5 rounded-lg border border-surface-border bg-background text-xs text-foreground flex items-start gap-2.5">
                     <AlertCircle className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                     <div className="space-y-1">
-                      <p>{errorMessage}</p>
+                      <p>Unable to deliver message right now. Please try again or email directly.</p>
                       <p className="text-muted">
-                        You can also email directly at{" "}
+                        Direct email:{" "}
                         <a
                           href={`mailto:${PERSONAL_INFO.email}`}
                           className="text-accent underline font-mono"
@@ -181,12 +136,11 @@ export function ContactSection() {
                       name="name"
                       required
                       type="text"
-                      disabled={status === "submitting"}
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      disabled={state.submitting}
                       placeholder="Jane Doe"
                       className="w-full px-3 py-2 rounded-lg bg-background border border-surface-border text-sm text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent disabled:opacity-50"
                     />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} className="text-xs text-red-400 mt-1 font-mono" />
                   </div>
                   <div>
                     <label htmlFor="contact-email" className="block text-xs font-mono text-muted mb-1">
@@ -197,12 +151,11 @@ export function ContactSection() {
                       name="email"
                       required
                       type="email"
-                      disabled={status === "submitting"}
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      disabled={state.submitting}
                       placeholder="jane@company.com"
                       className="w-full px-3 py-2 rounded-lg bg-background border border-surface-border text-sm text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent disabled:opacity-50"
                     />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400 mt-1 font-mono" />
                   </div>
                 </div>
 
@@ -215,20 +168,19 @@ export function ContactSection() {
                     name="message"
                     required
                     rows={4}
-                    disabled={status === "submitting"}
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    disabled={state.submitting}
                     placeholder="Brief overview of role, team, or project scope..."
                     className="w-full px-3 py-2 rounded-lg bg-background border border-surface-border text-sm text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent resize-none disabled:opacity-50"
                   />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-400 mt-1 font-mono" />
                 </div>
 
                 <button
                   type="submit"
-                  disabled={status === "submitting"}
+                  disabled={state.submitting}
                   className="w-full py-2.5 rounded-lg bg-accent text-white text-xs font-semibold hover:bg-accent-hover active:scale-[0.99] transition-all flex items-center justify-center gap-2 disabled:opacity-60"
                 >
-                  {status === "submitting" ? (
+                  {state.submitting ? (
                     <>
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
                       <span>Dispatching Message...</span>
@@ -245,3 +197,4 @@ export function ContactSection() {
     </section>
   );
 }
+

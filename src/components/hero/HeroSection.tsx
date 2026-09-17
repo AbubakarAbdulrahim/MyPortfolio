@@ -53,14 +53,14 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Confident Portrait Frame */}
+        {/* Confident Portrait Frame (Desktop Enlarged by ~20%) */}
         <div className="shrink-0 self-start md:self-auto">
-          <div className="relative w-36 sm:w-44 md:w-52 aspect-[4/5] rounded-2xl overflow-hidden border border-surface-border bg-surface shadow-sm">
+          <div className="relative w-36 sm:w-44 md:w-60 lg:w-64 aspect-[4/5] rounded-2xl overflow-hidden border border-surface-border bg-surface shadow-sm">
             <Image
               src="/profile.jpg"
               alt="Abubakar Abdulrahim"
               fill
-              sizes="(max-width: 768px) 176px, 208px"
+              sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, (max-width: 1024px) 240px, 256px"
               className="object-cover object-center"
               priority
             />
