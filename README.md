@@ -4,7 +4,7 @@ Personal portfolio website of **Abubakar Abdulrahim** — Software Engineer, Mob
 
 Built to showcase production work across mobile, fintech, and public-safety applications.
 
-🔗 **Live site:** [abubakarabdulrahim.dev](#) <!-- replace with real URL after deploy -->
+🔗 **Live site:** [abubakarabdulrahim.vercel.app](#) 
 
 ---
 

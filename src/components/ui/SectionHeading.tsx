@@ -1,5 +1,4 @@
 interface SectionHeadingProps {
-  index?: string;
   tag?: string;
   title: string;
   subtitle?: string;
@@ -7,7 +6,6 @@ interface SectionHeadingProps {
 }
 
 export function SectionHeading({
-  index,
   tag,
   title,
   subtitle,
@@ -15,11 +13,11 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div className={`mb-10 sm:mb-14 ${className}`}>
-      <div className="flex items-center gap-2 mb-2 text-xs font-mono tracking-wider text-muted uppercase">
-        {index && <span>{index}</span>}
-        {index && tag && <span>/</span>}
-        {tag && <span>{tag}</span>}
-      </div>
+      {tag && (
+        <div className="flex items-center gap-2 mb-2 text-xs font-mono tracking-wider text-accent uppercase font-medium">
+          <span>{tag}</span>
+        </div>
+      )}
 
       <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground">
         {title}

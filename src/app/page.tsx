@@ -1,15 +1,11 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { HeroSection } from "@/components/hero/HeroSection";
-import { AboutSection } from "@/components/about/AboutSection";
+import { ProjectsSection } from "@/components/projects/ProjectsSection";
 import { Timeline } from "@/components/experience/Timeline";
-import { SkillsMatrix } from "@/components/skills/SkillsMatrix";
-import { CaseStudies } from "@/components/case-studies/CaseStudies";
-import { GitHubProjects } from "@/components/projects/GitHubProjects";
+import { AboutSection } from "@/components/about/AboutSection";
 import { EducationSection } from "@/components/education/EducationSection";
-import { WritingSection } from "@/components/blog/WritingSection";
 import { ContactSection } from "@/components/contact/ContactSection";
 import { Footer } from "@/components/layout/Footer";
-import { AIAssistant } from "@/components/assistant/AIAssistant";
 
 export default function Home() {
   return (
@@ -21,33 +17,21 @@ export default function Home() {
         {/* 1. Hero */}
         <HeroSection />
 
-        {/* 2. About */}
-        <AboutSection />
+        {/* 2. Featured Projects Showcase */}
+        <ProjectsSection />
 
-        {/* 3. Experience Timeline */}
+        {/* 3. Production Work History */}
         <Timeline />
 
-        {/* 4. Skills (Animated Progress Bars) */}
-        <SkillsMatrix />
+        {/* 4. Background, Engineering Principles & Tech Stack */}
+        <AboutSection />
 
-        {/* 5. Featured Case Studies (Flat Cards, No Phone Mockups) */}
-        <CaseStudies />
-
-        {/* 6. All Projects (Live GitHub Grid) */}
-        <GitHubProjects />
-
-        {/* 7. Certifications & Education */}
+        {/* 5. Academic Degree & Certifications */}
         <EducationSection />
 
-        {/* 8. Writing / Blog */}
-        <WritingSection />
-
-        {/* 10. Contact */}
+        {/* 6. Direct Contact */}
         <ContactSection />
       </main>
-
-      {/* 9. AI Assistant Chat Widget (Floating) */}
-      <AIAssistant />
 
       {/* Footer */}
       <Footer />
