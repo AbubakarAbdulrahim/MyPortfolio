@@ -1,86 +1,87 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PERSONAL_INFO } from "@/data/portfolioData";
-import { GraduationCap, Languages, Compass, MapPin } from "lucide-react";
+
+const TECH_SPEC = [
+  {
+    category: "Languages",
+    items: ["Dart", "TypeScript", "Python", "JavaScript", "SQL"],
+  },
+  {
+    category: "Mobile Core",
+    items: ["Flutter", "Provider", "GoRouter", "SQLite", "Hive"],
+  },
+  {
+    category: "Cloud & Backend",
+    items: ["Firebase", "Firestore", "Django", "REST APIs", "PostgreSQL", "Supabase"],
+  },
+  {
+    category: "Engineering",
+    items: ["Git / GitHub", "Postman", "Clean Architecture", "Responsive UI"],
+  },
+];
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
       <SectionHeading
-        index="02"
-        tag="Profile & Background"
-        title="About Abubakar"
-        subtitle="Software engineer and mobile architect specializing in high-concurrency client applications and scalable backend systems."
+        tag="About"
+        title="Background & Technical Focus"
+        subtitle="A closer look at my engineering background, civic initiatives, and technical toolkit."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-        {/* Bio narrative (8 cols) */}
-        <div className="md:col-span-8 card p-6 sm:p-8 space-y-4">
-          <h3 className="text-lg font-semibold text-foreground tracking-tight">
-            Engineering Background & Education
-          </h3>
-
-          <p className="text-xs sm:text-sm text-muted leading-relaxed">
-            Based in Kano State, Nigeria, I engineer production mobile applications and distributed backend services. My focus centers on building zero-latency Flutter client architectures, real-time Firebase backends, and full-stack React/Django ecosystems that stand up to real-world network and concurrency constraints.
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        {/* Left Column: Human Editorial Bio (6 cols) */}
+        <div className="lg:col-span-6 space-y-4 text-xs sm:text-sm text-muted leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-foreground font-medium leading-relaxed">
+            I engineer production mobile applications and cloud platforms with Flutter, Firebase, and modern web tools.
           </p>
 
-          <p className="text-xs sm:text-sm text-muted leading-relaxed">
-            I completed my <strong className="text-foreground font-medium">B.Sc. in Information Technology</strong> at <strong className="text-foreground font-medium">Bayero University Kano (BUK)</strong> (Jan 2021 – Feb 2026), graduating with a <strong className="text-accent font-medium">4.44 / 5.00 CGPA</strong> (Second Class Honours). During my undergraduate studies, I was an active member of the <strong className="text-foreground font-medium">Google Developer Student Clubs (GDSC BUK)</strong> and the <strong className="text-foreground font-medium">MSSN Faculty of Computing</strong>. Concurrently, I am pursuing a dual-degree <strong className="text-foreground font-medium">B.Sc. in Computer Science</strong> at the <strong className="text-foreground font-medium">National Open University of Nigeria (NOUN)</strong> (started Mar 2023) to deepen my theoretical foundations in advanced algorithms and operating systems.
+          <p>
+            Based in Kano, Nigeria, my engineering focus centers on offline-first architectures, low-latency sync, and building reliable mobile systems that hold up under real-world network and device constraints.
           </p>
 
-          <div className="pt-3 border-t border-surface-border">
-            <h4 className="text-xs font-mono text-muted uppercase tracking-wider mb-2">
-              Research Interests
-            </h4>
-            <div className="flex flex-wrap gap-1.5">
-              {PERSONAL_INFO.researchInterests.map((interest) => (
-                <span
-                  key={interest}
-                  className="px-2.5 py-1 rounded text-xs font-mono bg-background text-muted border border-surface-border"
-                >
-                  {interest}
-                </span>
-              ))}
-            </div>
+          <p>
+            Outside of contract and production codebases, I founded <strong className="text-foreground font-medium">Hausasoft Technologies</strong> in Kano, building community digital tools and organizing practical developer bootcamps to mentor emerging software engineers across northern Nigeria.
+          </p>
+
+          <div className="pt-4 border-t border-surface-border">
+            <p className="text-foreground text-xs sm:text-sm leading-relaxed">
+              <span className="font-semibold text-foreground">Engineering Standard:</span>{" "}
+              <span className="text-muted">
+                Design for intermittent connectivity from day one, prioritize deterministic state management, and write code that lasts.
+              </span>
+            </p>
           </div>
         </div>
 
-        {/* At a glance metadata (4 cols) */}
-        <div className="md:col-span-4 space-y-4">
-          <div className="card p-6 space-y-4 text-xs font-mono">
-            <div>
-              <span className="text-muted block mb-1">LOCATION</span>
-              <div className="flex items-center gap-1.5 text-foreground font-medium">
-                <MapPin className="w-3.5 h-3.5 text-accent" />
-                <span>{PERSONAL_INFO.location}</span>
+        {/* Right Column: Apple Technical Specification Ledger (6 cols) */}
+        <div className="lg:col-span-6 space-y-4">
+          <div className="border-t border-surface-border">
+            {TECH_SPEC.map((spec) => (
+              <div key={spec.category} className="py-4 grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-4 items-baseline border-b border-surface-border">
+                <span className="sm:col-span-4 text-xs font-mono text-muted uppercase tracking-wider font-medium">
+                  {spec.category}
+                </span>
+                <div className="sm:col-span-8 flex flex-wrap gap-1.5">
+                  {spec.items.map((item) => (
+                    <span
+                      key={item}
+                      className="px-2.5 py-1 rounded text-[11px] font-mono bg-background text-muted border border-surface-border hover:border-surface-border/80 hover:text-foreground transition-colors inline-flex items-center cursor-default"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            ))}
+          </div>
 
-            <div className="pt-3 border-t border-surface-border">
-              <span className="text-muted block mb-1.5">LANGUAGES</span>
-              <ul className="space-y-1 text-foreground font-sans">
-                {PERSONAL_INFO.languages.map((lang) => (
-                  <li key={lang.name} className="flex justify-between text-xs">
-                    <span>{lang.name}</span>
-                    <span className="font-mono text-muted">{lang.level}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="pt-3 border-t border-surface-border">
-              <span className="text-muted block mb-1.5">CAMPUS LEADERSHIP</span>
-              <ul className="space-y-1.5 text-foreground font-sans text-xs">
-                {PERSONAL_INFO.volunteering.map((v) => (
-                  <li key={v.organization}>
-                    <span className="font-medium block text-foreground">{v.organization}</span>
-                    <span className="font-mono text-[11px] text-muted">{v.period}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="pt-4 text-xs font-mono text-muted/80">
+            <span>Primary Focus: </span>
+            <span className="text-foreground font-medium">Cross-Platform Flutter & Firebase Systems</span>
           </div>
         </div>
       </div>
     </section>
   );
 }
+

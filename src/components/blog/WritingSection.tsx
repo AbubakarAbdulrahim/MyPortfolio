@@ -9,24 +9,20 @@ import { BlogPost } from "@/types";
 export function WritingSection() {
   const [activePost, setActivePost] = useState<BlogPost | null>(null);
 
-  // Focus on top 2 flagship technical write-ups
-  const featuredPosts = BLOG_POSTS.slice(0, 2);
-
   return (
-    <section id="notes" className="py-20 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section id="writing" className="py-16 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
       <SectionHeading
-        index="08"
-        tag="Engineering Notes"
-        title="Technical Writing"
-        subtitle="Architecture breakdowns from building real-time dispatch and production fintech authentication."
+        tag="Writing"
+        title="Articles & Notes"
+        subtitle="Practical notes on mobile engineering, architecture trade-offs, and lessons learned."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {featuredPosts.map((post) => (
+        {BLOG_POSTS.map((post) => (
           <article
             key={post.slug}
             onClick={() => setActivePost(post)}
-            className="card p-6 sm:p-8 flex flex-col justify-between cursor-pointer group"
+            className="card p-6 sm:p-8 flex flex-col justify-between cursor-pointer group hover:border-accent/40 transition-colors"
           >
             <div>
               <div className="flex items-center justify-between text-xs font-mono text-muted mb-3">
@@ -34,7 +30,7 @@ export function WritingSection() {
                 <span>{post.readTime}</span>
               </div>
 
-              <h3 className="text-lg sm:text-xl font-semibold text-foreground group-hover:text-accent transition-colors leading-snug">
+              <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-accent transition-colors leading-snug">
                 {post.title}
               </h3>
 
@@ -54,7 +50,7 @@ export function WritingSection() {
         ))}
       </div>
 
-      {/* Unobtrusive Reader Modal */}
+      {/* Reader Modal */}
       {activePost && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div className="card w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 bg-background border border-surface-border">

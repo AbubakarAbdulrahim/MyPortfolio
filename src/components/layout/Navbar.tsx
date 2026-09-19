@@ -8,13 +8,10 @@ import { ResumeModal } from "@/components/ui/ResumeModal";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 const NAV_LINKS = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Skills", href: "#skills" },
-  { name: "Case Studies", href: "#case-studies" },
   { name: "Projects", href: "#projects" },
-  { name: "Education", href: "#education" },
-  { name: "Notes", href: "#notes" },
+  { name: "Experience", href: "#experience" },
+  { name: "About", href: "#about" },
+  { name: "Credentials", href: "#education" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -34,9 +31,8 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
-          isScrolled ? "nav-blur py-3" : "bg-transparent py-5"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${isScrolled ? "nav-blur py-3" : "bg-transparent py-5"
+          }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo / Brand Name */}
@@ -49,7 +45,7 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Links */}
+          {/* Desktop Links (6 items) */}
           <nav className="hidden md:flex items-center gap-6" aria-label="Primary Navigation">
             {NAV_LINKS.map((link) => (
               <a

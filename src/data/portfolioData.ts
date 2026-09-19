@@ -1,101 +1,113 @@
-import { CaseStudy, TimelineEntry, SkillProgress, GitHubRepo, EducationCertification } from "@/types";
+export interface FeaturedProject {
+  id: string;
+  title: string;
+  subtitle: string;
+  tagline: string;
+  category: string;
+  tags: string[];
+  problem: string;
+  built: string;
+  technology: string[];
+  result: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  image?: string;
+  screenshotNote?: string;
+  isFlagship?: boolean;
+}
+
+export interface TimelineEntry {
+  id: string;
+  role: string;
+  company: string;
+  location: string;
+  period: string;
+  isCurrent: boolean;
+  type: 'Full-time' | 'Internship' | 'Founder / Independent' | 'SIWES';
+  summary: string;
+  highlights: string[];
+  technologies: string[];
+}
+
+export interface EducationCertification {
+  title: string;
+  institution: string;
+  period: string;
+  details: string;
+  badge: string;
+  type: 'education' | 'certification';
+  gradeOrScore?: string;
+}
 
 export const PERSONAL_INFO = {
   name: "Abubakar Abdulrahim",
   fullName: "Abubakar Abdulrahim Ibrahim",
   shortName: "Abubakar",
-  roleTitle: "Software Engineer | Mobile App Developer (Flutter, Firebase) | Web Developer (React, Django)",
-  taglineTitle: "Software Engineer | Mobile App Developer (Flutter, Firebase) | Web Developer (React, Django)",
-  heroHeadline: "Architecting high-concurrency mobile systems & resilient cloud interfaces.",
-  heroSubtext: "Specializing in zero-latency Flutter mobile architectures, real-time Firebase backends, and full-stack React/Django ecosystems. Proven production track record across fintech security, public-safety geofencing, and academic platforms.",
-  location: "Kano State, Nigeria",
-  coordinates: "12.0022° N, 8.5920° E",
-  status: "Available for Senior Roles & High-Value Contracts",
-  availabilityNotice: "Open to Full-Time Engineering Roles & Select Contracts",
+  roleTitle: "Mobile Developer & IT Professional",
+  heroHeadline: "Abubakar Abdulrahim",
+  heroSubtitle: "Mobile Developer & IT Professional",
+  heroTagline: "Building practical digital products that solve real problems.",
+  heroSubtext: "Based in Kano, Nigeria. Specializing in Flutter, Firebase, and web technologies.",
+  location: "Kano, Nigeria",
+  status: "Available for engineering roles & select contracts",
   github: "https://github.com/AbubakarAbdulrahim",
   githubHandle: "AbubakarAbdulrahim",
   linkedin: "https://linkedin.com/in/abubakar-abdulrahim-8b8619228",
   email: "abubakarabdulrahimibrahim@gmail.com",
-  phone: "+234 810 000 0000",
   resumeUrl: "/resume.pdf",
-  languages: [
-    { name: "English", level: "Fluent / Professional Working", tag: "EN" },
-    { name: "Arabic", level: "Professional / Technical & Classical", tag: "AR" },
-    { name: "Hausa", level: "Native / Mother Tongue", tag: "HA" },
-  ],
-  researchInterests: [
-    "Mobile Computing",
-    "Mobile Crowdsensing",
-    "Edge / On-Device AI",
-    "Model Compression",
-    "Applied Software Systems for Public Safety",
-  ],
-  volunteering: [
-    {
-      role: "Member",
-      organization: "Google Developer Student Clubs (GDSC BUK)",
-      period: "Feb 2022 – Feb 2026 (4+ years)",
-      description: "Mentored peers in Flutter, clean code architecture, and Google Cloud integrations.",
-    },
-    {
-      role: "Member",
-      organization: "MSSN BUK (Faculty of Computing)",
-      period: "Feb 2022 – Jan 2026 (4 years)",
-      description: "Organized student academic support sessions and collaborative study cohorts.",
-    },
-  ],
-  stats: [
-    { label: "Emergency Alert Latency", value: "~2.1s", subtext: "Safetify geofenced dispatch" },
-    { label: "Auth Conversion Lift", value: "+38%", subtext: "Tubali Digital OTP migration" },
-    { label: "Undergrad IT CGPA", value: "4.44 / 5.00", subtext: "Bayero University Kano" },
-    { label: "Dispatch Triage Gain", value: "+30%", subtext: "Hausasoft live alert system" },
-  ],
 };
 
-export const SKILL_PROGRESS_LIST: SkillProgress[] = [
+export const CORE_SKILLS = [
+  "Flutter",
+  "Dart",
+  "Firebase",
+  "REST APIs",
+  "Git / GitHub",
+];
+
+export const WORKING_KNOWLEDGE_SKILLS = [
+  "Django",
+  "React",
+  "PostgreSQL",
+  "Supabase",
+  "Python",
+];
+
+export const WHAT_I_DO = [
   {
-    skill: "Flutter / Dart",
-    category: "Mobile",
-    percentage: 90,
-    context: "Production fintech, geofenced alerting, feature-first BLoC/Provider architecture, offline SQLite caching",
+    title: "Mobile Development",
+    description: "Cross-platform mobile apps built with Flutter and Dart, with real-time Firebase sync and offline caching.",
+    iconName: "Smartphone",
   },
   {
-    skill: "Firebase (Auth, Firestore, Cloud Messaging, Functions)",
-    category: "Databases & Cloud",
-    percentage: 88,
-    context: "High-throughput push channels, real-time snapshot listeners, secure rules, serverless triggers",
+    title: "Web Platforms",
+    description: "Responsive web apps and dashboards built with React, Next.js, and clean Tailwind CSS.",
+    iconName: "Globe",
   },
   {
-    skill: "Git / GitHub / Agile / Scrum",
-    category: "Tools & Engineering",
-    percentage: 85,
-    context: "Disciplined branch protection, PR code reviews, CI/CD automated build pipelines, velocity tracking",
+    title: "Backend & APIs",
+    description: "REST API integrations, serverless Cloud Functions, authentication flows, and relational database modeling.",
+    iconName: "Cpu",
   },
   {
-    skill: "UI/UX Implementation",
-    category: "Frontend",
-    percentage: 78,
-    context: "Translating Figma designs into accessible, pixel-perfect mobile and web interfaces (WCAG AA)",
+    title: "Applied AI Integrations",
+    description: "Adding practical language model capabilities, streaming assistants, and smart document processing into user workflows.",
+    iconName: "Sparkles",
   },
   {
-    skill: "React.js / JavaScript",
-    category: "Frontend",
-    percentage: 75,
-    context: "Modern functional components, hooks, Next.js App Router, stateful dashboards, REST consumption",
-  },
-  {
-    skill: "Python / Django REST APIs",
-    category: "Backend",
-    percentage: 72,
-    context: "Stateless REST endpoints, token authentication, ORM database migrations, secure interceptor patterns",
-  },
-  {
-    skill: "PostgreSQL / Supabase",
-    category: "Databases & Cloud",
-    percentage: 70,
-    context: "Relational data modeling, indexing, foreign key integrity, row-level security policies",
+    title: "Tech Training & Mentorship",
+    description: "Running bootcamps and workshops for emerging software developers in northern Nigeria through Hausasoft.",
+    iconName: "Users",
   },
 ];
+
+export const CURRENTLY = {
+  building: "SmartBUK campus mobile app & Hausasoft educational tools",
+  working: "Production mobile application development",
+  learning: "Applied AI integrations & system architecture patterns",
+  based: "Kano, Nigeria",
+  openTo: "Full-time engineering roles, mobile contracts & technical collaborations",
+};
 
 export const TIMELINE_EXPERIENCE: TimelineEntry[] = [
   {
@@ -107,17 +119,15 @@ export const TIMELINE_EXPERIENCE: TimelineEntry[] = [
     isCurrent: true,
     type: "Full-time",
     summary:
-      "Spearheading the modernization of Tubali's mobile fintech app by redesigning critical security flows. Migrated authentication and verification from fragile email magic-links to carrier-grade SMS/WhatsApp OTP verification across Account Activation, Password Reset, and Transaction PIN Reset.",
+      "Developing Flutter-based fintech applications, authentication workflows, API integrations, and mobile security.",
     highlights: [
-      "Led end-to-end migration of 4 mission-critical authentication checkpoints (Activation, Password Reset, PIN Resets) with zero production downtime.",
-      "Engineered clean, feature-first Flutter architecture with Provider, go_router navigation guards, and custom Dio interceptor layers.",
-      "Integrated SMS auto-fill and hardware Android Keystore / iOS Keychain token encryption, driving a +38% increase in successful onboarding conversion.",
+      "Improved mobile authentication, password recovery, and transaction verification flows.",
+      "Implemented multi-channel OTP verification workflows across key account checkpoints.",
+      "Structured clean state and routing architectures using Provider and GoRouter.",
+      "Engineered secure token storage using hardware-backed keystore integration.",
+      "Collaborated with cross-functional teams on production mobile feature releases.",
     ],
-    technologies: ["Flutter", "Dart", "Provider", "go_router", "Dio", "Fintech Security", "Keystore"],
-    metricHighlight: {
-      value: "+38%",
-      label: "Auth Onboarding Conversion",
-    },
+    technologies: ["Flutter", "Dart", "Provider", "GoRouter", "Dio", "REST APIs"],
   },
   {
     id: "codealpha-intern",
@@ -128,10 +138,10 @@ export const TIMELINE_EXPERIENCE: TimelineEntry[] = [
     isCurrent: true,
     type: "Internship",
     summary:
-      "Developing native-grade mobile user interfaces and state management workflows. Collaborating on cross-platform Dart codebases and standardizing component libraries.",
+      "Developing cross-platform mobile user interfaces and state management workflows in Flutter.",
     highlights: [
-      "Built modular Flutter widgets adhering to responsive layouts and clean state separation.",
-      "Participated in sprint planning, automated testing, and code review cycles.",
+      "Built modular Flutter widgets adhering to clean responsive layouts and component standards.",
+      "Collaborated on code reviews, bug fixes, and sprint deliverables.",
     ],
     technologies: ["Flutter", "Dart", "State Management", "REST APIs", "Git"],
   },
@@ -144,17 +154,13 @@ export const TIMELINE_EXPERIENCE: TimelineEntry[] = [
     isCurrent: true,
     type: "Founder / Independent",
     summary:
-      "Independent venture architecting community mobile applications and technical education platforms. Engineered real-time incident reporting systems and organized developer bootcamps.",
+      "Independent initiative focused on building community digital tools and technology training in northern Nigeria.",
     highlights: [
-      "Architected and deployed a real-time crowdsourced incident reporting mobile app, reducing emergency dispatch time by ~30% with geofenced push alerts and background sync.",
-      "Organized and instructed the 'Flutter Zero-to-Hero' digital-skills bootcamp, mentoring 50+ emerging developers across northern Nigeria.",
-      "Built Hausasoft E-Learn, a digital skills learning platform delivering accessible education in English and Hausa.",
+      "Designed and deployed Safetify, a crowdsourced incident reporting mobile app with GPS geofencing and push alerts.",
+      "Organized practical Flutter developer bootcamps, mentoring beginner developers across Kano.",
+      "Built Hausasoft E-Learn, delivering programming and technology tutorials in English and Hausa.",
     ],
-    technologies: ["Flutter", "Firebase", "Google Maps API", "SQLite", "Cloud Functions", "Mentorship"],
-    metricHighlight: {
-      value: "~30%",
-      label: "Faster Emergency Response",
-    },
+    technologies: ["Flutter", "Firebase", "Google Maps API", "SQLite", "Next.js"],
   },
   {
     id: "citad-siwes",
@@ -165,296 +171,95 @@ export const TIMELINE_EXPERIENCE: TimelineEntry[] = [
     isCurrent: false,
     type: "SIWES",
     summary:
-      "Student Industrial Working Experience Scheme (SIWES) focused on full-stack web application development, database design, and institutional technical systems.",
+      "Industrial training focused on web development, relational database design, and institutional IT systems.",
     highlights: [
       "Developed web portals using Python, Django, HTML5, CSS3, and JavaScript.",
-      "Gained hands-on experience in relational database modeling, version control, and client-server network architecture.",
+      "Gained hands-on experience in database queries, version control, and client-server architecture.",
     ],
     technologies: ["Python", "Django", "JavaScript", "HTML/CSS", "PostgreSQL", "Git"],
   },
 ];
 
-export const FLAGSHIP_CASE_STUDIES: CaseStudy[] = [
+export const FEATURED_PROJECTS: FeaturedProject[] = [
   {
     id: "safetify",
-    index: "01",
-    slug: "safetify-incident-response",
     title: "Safetify",
-    subtitle: "Real-Time Crowdsourced Incident Reporting and Safety Alert Mobile Application",
-    tagline: "Ultra-low latency geofenced incident dispatch with offline-first caching and multi-tier verification (Final-Year Capstone Project).",
-    clientOrContext: "Final-Year B.Sc. Capstone Project",
-    period: "2025 – 2026",
-    role: "Lead Mobile Architect & Systems Designer",
-    featured: true,
-    accentColor: "#2F7DFF",
-    platform: "mobile",
-    tags: ["Flutter", "Dart", "Firebase", "Google Maps API", "Cloudinary", "Clean Architecture", "Geofencing"],
-    metrics: [
-      { label: "Alert Delivery Latency", value: "~2.1s", subtext: "From trigger to perimeter device", trend: "Real-time" },
-      { label: "Usability Evaluation", value: "4.4 / 5.0", subtext: "SUS user study across 60+ participants", trend: "Grade A" },
-      { label: "Architecture", value: "3-Tier", subtext: "Presentation, Domain, & Data decoupling", trend: "Clean" },
-      { label: "Verification Pipeline", value: "4 Stages", subtext: "Unit, Integration, System, & Field Usability", trend: "100% Pass" },
-    ],
+    subtitle: "Real-Time Incident Reporting & Safety Alert Mobile App",
+    tagline: "Crowdsourced safety alerts with real-time geofencing and offline queueing.",
+    category: "Mobile Application / Capstone",
+    isFlagship: true,
+    image: "/projects/safetify.jpg",
+    tags: ["Flutter", "Dart", "Firebase", "Google Maps API", "Cloud Firestore", "SQLite"],
     problem:
-      "Emergency response and incident awareness in dense suburban environments suffer from high notification delays and fragmented communication channels. Traditional phone trees fail to deliver geo-precise, actionable situational intelligence during critical events.",
-    approach: [
-      "Engineered an offline-first mobile client using Flutter and Dart with local SQLite persistence and background geofencing listeners.",
-      "Designed a real-time reactive event ingestion pipeline via Cloud Firestore and Cloud Functions, dispatching localized push notifications within a configurable radius.",
-      "Implemented media compression pipelines directly on-device before streaming photographic evidence to Cloudinary CDN, reducing payload size by 65% on low-bandwidth connections.",
-    ],
-    architectureHighlights: [
-      "Presentation Layer: Feature-scoped state machines eliminating unnecessary widget rebuilds.",
-      "Domain Layer: Pure Dart use-cases and entity contracts independent of any third-party framework.",
-      "Data Layer: Repository pattern with cache-then-network policy using SQLite and Cloud Firestore.",
-    ],
-    results: [
-      "Achieved verified ~2.1 second alert delivery latency from incident submission to neighbouring perimeter devices.",
-      "Scored 4.4 / 5.0 across standardized usability testing dimensions (efficiency, learnability, error recovery).",
-      "Sustained 100% uptime throughout simulated multi-user incident load testing.",
-    ],
-    screenFlows: [
-      {
-        name: "Perimeter Radar",
-        title: "Active Threat Radar",
-        subtitle: "Real-time geofence monitoring",
-        badge: "LIVE TELEMETRY",
-        description: "Interactive vector map with dynamic clustering, severity badges, and emergency beacon dispatch.",
-        details: ["Dynamic radar sweep", "Live radius toggle (500m - 10km)", "Critical alerts override DND"],
-        accent: "#2F7DFF",
-      },
-      {
-        name: "Incident Dispatch",
-        title: "Rapid Report Flow",
-        subtitle: "Under 15s incident filing",
-        badge: "OFFLINE FIRST",
-        description: "3-step wizard with automatic GPS coordinates, evidence attachment, and local queue sync.",
-        details: ["Auto geotagging ±2m", "Local WebP compression (-65%)", "Zero data loss queue"],
-        accent: "#2F7DFF",
-      },
-      {
-        name: "Verification Hub",
-        title: "Community Triage",
-        subtitle: "Crowdsourced consensus model",
-        badge: "4.4 / 5.0 SUS",
-        description: "Reputation-weighted voting mechanism to filter out false alarms before broader alert broadcasts.",
-        details: ["Upvote / Downvote verification", "Moderator override console", "Cryptographic audit trail"],
-        accent: "#2F7DFF",
-      },
-    ],
+      "In dense communities, incident awareness often takes too long because alerts are scattered across phone calls and unverified social media posts without geographical precision.",
+    built:
+      "Engineered an offline-first mobile application in Flutter with background GPS geofencing, on-device image downsampling, and Cloud Firestore push broadcasting to nearby users.",
+    technology: ["Flutter", "Dart", "Firebase", "Google Maps API", "SQLite"],
+    result:
+      "Delivered real-time incident dispatch with proximity filtering, tested under simulated multi-user load conditions.",
     githubUrl: "https://github.com/AbubakarAbdulrahim/Safetify",
     liveUrl: "https://safetify-61721.web.app",
+    screenshotNote: "Replace image in /public/projects/safetify.jpg",
   },
   {
-    id: "buk-smart-app",
-    index: "02",
-    slug: "buk-smart-app",
-    title: "SmartBUK (buk_smart_app)",
-    subtitle: "Student-Focused Mobile App for Bayero University Kano",
-    tagline: "Simplifying and elevating academic & campus experience for 40,000+ university students with academic feeds, lost & found, and AI campus assistance.",
-    clientOrContext: "Bayero University Kano Student Community Platform",
-    period: "2025 – Present",
-    role: "Lead Mobile Developer & AI System Integrator",
-    featured: true,
-    accentColor: "#2F7DFF",
-    platform: "mobile",
-    tags: ["Flutter", "Dart", "Firebase", "Gemini 2.5 Flash API", "Cloud Functions", "Real-Time Sync"],
-    metrics: [
-      { label: "Target Student Base", value: "40,000+", subtext: "Across Old & New BUK Campuses", trend: "Scale" },
-      { label: "AI Response Latency", value: "<850ms", subtext: "Powered by Gemini 2.5 Flash stream", trend: "Instant" },
-      { label: "Active Subsystems", value: "4 Modules", subtext: "Incidents, Lost & Found, Updates, AI", trend: "Unified" },
-      { label: "Design Language", value: "Clean Flat", subtext: "Restrained, high-contrast dark mode", trend: "Accessible" },
-    ],
+    id: "smartbuk",
+    title: "SmartBUK",
+    subtitle: "Campus Services & Information Mobile App for Bayero University Kano",
+    tagline: "Centralized academic bulletins, lost & found, and student resources.",
+    category: "Mobile Application / Campus Platform",
+    isFlagship: true,
+    image: "/projects/smartbuk.jpg",
+    tags: ["Flutter", "Dart", "Firebase", "Cloud Functions", "Real-Time Sync"],
     problem:
-      "Students at Bayero University Kano traditionally relied on fragmented WhatsApp groups, unverified bulletin boards, and manual lost-and-found noticeboards, resulting in missed academic notices and administrative delays.",
-    approach: [
-      "Engineered an all-in-one university mobile ecosystem using Flutter with a high-contrast, accessible dark interface.",
-      "Integrated Google Gemini 2.5 Flash API with specialized prompt grounding for BUK campus policies, faculty directories, and academic calendars.",
-      "Constructed a Lost & Found ledger with image recognition tagging, secure ownership claim verification, and instant match notifications.",
-    ],
-    architectureHighlights: [
-      "AI Pipeline: Server-sent event (SSE) streaming from Gemini 2.5 Flash with token-by-token Markdown rendering in Flutter.",
-      "Auth: Multi-factor student verification validating institutional matriculation credentials.",
-      "Security: Granular Firebase Security Rules restricting data access to verified campus domain tokens.",
-    ],
-    results: [
-      "Consolidated 4 vital campus services into one unified, persistent mobile platform.",
-      "Delivered sub-second institutional AI assistance resolving common administrative and scheduling inquiries.",
-    ],
-    screenFlows: [
-      {
-        name: "Campus AI Hub",
-        title: "BUK Intelligence",
-        subtitle: "Gemini 2.5 Flash Copilot",
-        badge: "GEMINI 2.5 FLASH",
-        description: "Context-aware campus assistant responding to timetable queries, exam venues, and faculty policies.",
-        details: ["Streaming token animation", "Deterministic campus prompt grounding", "Sub-second response"],
-        accent: "#2F7DFF",
-      },
-      {
-        name: "Lost & Found Ledger",
-        title: "Credential Recovery",
-        subtitle: "Instant match algorithm",
-        badge: "COMMUNITY HUB",
-        description: "Student ID card and laptop recovery registry with instant notifications upon attribute matches.",
-        details: ["OCR ID card scanning", "Claimant verification flow", "Resolved item archive"],
-        accent: "#2F7DFF",
-      },
-      {
-        name: "Verified Bulletins",
-        title: "Senate & Faculty Wire",
-        subtitle: "Direct push notifications",
-        badge: "VERIFIED SOURCE",
-        description: "Announcements categorized by faculty, level, and emergency campus advisories.",
-        details: ["Pinned urgent dispatches", "Bookmark for offline reading", "Departmental filtering"],
-        accent: "#2F7DFF",
-      },
-    ],
+      "Important academic circulars, exam schedules, and lost-and-found items at BUK were fragmented across dozens of informal WhatsApp groups and physical notice boards.",
+    built:
+      "Developed a dedicated Flutter mobile application for students, providing categorized faculty wire feeds, matriculation-token authorization, and a searchable lost-and-found registry.",
+    technology: ["Flutter", "Dart", "Firebase", "Cloud Functions"],
+    result:
+      "Consolidated essential campus announcements and student services into a single persistent mobile platform.",
     githubUrl: "https://github.com/AbubakarAbdulrahim/buk_smart_app",
+    screenshotNote: "Replace image in /public/projects/smartbuk.jpg",
   },
   {
-    id: "tubali-otp-migration",
-    index: "03",
-    slug: "tubali-fintech-otp-migration",
-    title: "Tubali Digital OTP Migration",
-    subtitle: "High-Concurrency OTP Authentication & Security Overhaul",
-    tagline: "Zero-downtime transition from fragile email magic links to carrier-grade SMS/WhatsApp OTP verification in a live fintech application.",
-    clientOrContext: "Tubali Digital (Fintech Mobile Application)",
-    period: "Sep 2026 – Present",
-    role: "Mobile Application Developer",
-    featured: true,
-    accentColor: "#2F7DFF",
-    platform: "mobile",
-    tags: ["Flutter", "Dart", "Provider", "go_router", "Dio Interceptors", "Fintech Security", "Keystore"],
-    metrics: [
-      { label: "Auth Onboarding Lift", value: "+38%", subtext: "Reduction in registration drop-offs", trend: "Surge" },
-      { label: "Verification Latency", value: "<15s", subtext: "Full OTP receipt and auto-fill loop", trend: "Sub-15s" },
-      { label: "Production Downtime", value: "0.00%", subtext: "Seamless dual-path migration cutover", trend: "Zero" },
-      { label: "Architecture", value: "Clean / Dio", subtext: "Custom security headers & token rotators", trend: "Hardened" },
-    ],
+    id: "smartroute",
+    title: "SmartRoute",
+    subtitle: "Route Optimization & Logistics Dashboard",
+    tagline: "Interactive route planning and waypoint dispatch prototype.",
+    category: "Web & Logistics Application",
+    isFlagship: false,
+    image: "/projects/smartroute.jpg",
+    tags: ["TypeScript", "React", "Mapping APIs", "Tailwind CSS"],
     problem:
-      "Tubali's live mobile fintech app experienced severe onboarding friction and drop-offs due to legacy email-link verification. Emails frequently landed in spam folders, expired before user retrieval, or failed when deep links bounced between mobile browsers.",
-    approach: [
-      "Architected and executed a comprehensive migration of all 4 critical security flows: (1) Account Activation, (2) Password Reset, (3) Transaction PIN Reset, and (4) High-Value Transaction Authorization.",
-      "Integrated carrier-grade SMS and WhatsApp OTP fallback pathways with strict rate-limiting, resend throttling, and automatic clipboard detection.",
-      "Refactored network communication layer using Dio with centralized interceptors for token refreshing, encrypted device fingerprinting, and session recovery.",
-    ],
-    architectureHighlights: [
-      "State & Routing: Feature-first architecture utilizing Provider for scoped form validation and go_router for declarative navigation guards.",
-      "Security: Hardware-backed Android Keystore and iOS Keychain storage for ephemeral verification tokens.",
-      "Resilience: Automated fallback from carrier SMS to WhatsApp API upon delivery timeouts.",
-    ],
-    results: [
-      "Increased successful onboarding conversion rates by 38% within two weeks of release.",
-      "Reduced user-reported authentication support tickets by 82%.",
-      "Achieved zero-regression delivery within an active, regulated financial environment.",
-    ],
-    screenFlows: [
-      {
-        name: "OTP Input Matrix",
-        title: "Secure 6-Digit Gate",
-        subtitle: "Auto-fill & hardware timer",
-        badge: "FINTECH GRADE",
-        description: "6-box input with automated SMS listener, 60s countdown, and WhatsApp fallback.",
-        details: ["SMS Auto-retrieval", "Hardware Keystore protection", "Biometric fallback prompt"],
-        accent: "#2F7DFF",
-      },
-      {
-        name: "Transaction PIN Reset",
-        title: "2-Factor Re-auth",
-        subtitle: "Multi-tier verification",
-        badge: "REGULATED SEC",
-        description: "Secure step-up verification combining OTP authorization with device binding.",
-        details: ["Tokenized authorization header", "Tamper detection shield", "Zero plaintext storage"],
-        accent: "#2F7DFF",
-      },
-      {
-        name: "Device Vault",
-        title: "Hardware Device Bindings",
-        subtitle: "Active session management",
-        badge: "ZERO REGRESSION",
-        description: "Overview of active authorized devices with one-tap remote revoking and audit logging.",
-        details: ["Hardware integrity attestation", "Immediate session invalidation", "Encrypted audit trail"],
-        accent: "#2F7DFF",
-      },
-    ],
-    githubUrl: "https://github.com/AbubakarAbdulrahim",
+      "Regional transport and delivery planning often suffers from inefficient multi-stop routing and lack of interactive visual dispatch tools.",
+    built:
+      "Constructed a clean dispatch dashboard with interactive map waypoints, stopover sequencing, and transit duration estimates.",
+    technology: ["TypeScript", "React", "Tailwind CSS", "Map APIs"],
+    result:
+      "Demonstrated efficient visual stopover reordering and dispatch planning for regional transport networks.",
+    githubUrl: "https://github.com/AbubakarAbdulrahim/SmartRoute",
+    screenshotNote: "Replace image in /public/projects/smartroute.jpg",
+  },
+  {
+    id: "hausasoft-elearn",
+    title: "Hausasoft E-Learn",
+    subtitle: "Accessible Tech Education & Digital Skills Platform",
+    tagline: "Bilingual programming curriculum in English and Hausa.",
+    category: "Web Platform / Education",
+    isFlagship: false,
+    image: "/projects/hausasoft.jpg",
+    tags: ["TypeScript", "Next.js", "Firebase", "Tailwind CSS"],
+    problem:
+      "Beginner developers in northern Nigeria often face barriers accessing structured programming tutorials in both English and their native language.",
+    built:
+      "Built a web platform delivering mobile development lessons, video workshops, and practical code exercises in English and Hausa.",
+    technology: ["TypeScript", "Next.js", "Firebase", "Tailwind CSS"],
+    result:
+      "Provided accessible, bilingual programming curricula to beginner students across Kano and northern Nigeria.",
+    githubUrl: "https://github.com/AbubakarAbdulrahim/Hausasoft",
+    screenshotNote: "Replace image in /public/projects/hausasoft.jpg",
   },
 ];
 
-export const VERIFIED_GITHUB_REPOS: GitHubRepo[] = [
-  {
-    name: "Safetify",
-    language: "Dart",
-    description: "Real-Time Crowdsourced Incident Reporting and Safety Alert Mobile Application — final-year B.Sc. project.",
-    stars: 2,
-    url: "https://github.com/AbubakarAbdulrahim/Safetify",
-    homepage: "",
-  },
-  {
-    name: "safetify2",
-    language: "Dart",
-    description: "Admin Dashboard of Safetify App — crowdsourced incident reporting & safety alert management portal.",
-    stars: 0,
-    url: "https://github.com/AbubakarAbdulrahim/safetify2",
-    homepage: "https://safetify-61721.web.app",
-  },
-  {
-    name: "buk_smart_app",
-    language: "Dart",
-    description: "SmartBUK: student-focused mobile application designed to improve academic and campus services at Bayero University Kano.",
-    stars: 1,
-    url: "https://github.com/AbubakarAbdulrahim/buk_smart_app",
-    homepage: null,
-  },
-  {
-    name: "Hausasoft",
-    language: "TypeScript",
-    description: "Hausasoft E-Learn: accessible platform offering digital skills and educational content in English and Hausa.",
-    stars: 1,
-    url: "https://github.com/AbubakarAbdulrahim/Hausasoft",
-    homepage: null,
-  },
-  {
-    name: "MyPortfolio",
-    language: "TypeScript",
-    description: "Production personal portfolio website of Abubakar Abdulrahim — built with Next.js App Router, React, and Tailwind CSS.",
-    stars: 0,
-    url: "https://github.com/AbubakarAbdulrahim/MyPortfolio",
-    homepage: "https://my-portfolio-six-omega-7g9g0sq964.vercel.app",
-  },
-  {
-    name: "EventManager",
-    language: "JavaScript",
-    description: "All-in-one centralized event booking and reservation web application.",
-    stars: 0,
-    url: "https://github.com/AbubakarAbdulrahim/EventManager",
-    homepage: "https://eventmaster-ashen.vercel.app/",
-  },
-  {
-    name: "SmartRoute",
-    language: "TypeScript",
-    description: "Intelligent logistics infrastructure and route optimization system for African transport networks.",
-    stars: 0,
-    url: "https://github.com/AbubakarAbdulrahim/SmartRoute",
-    homepage: null,
-  },
-  {
-    name: "safetify_backend",
-    language: "Python",
-    description: "Backend cloud service and event processing pipelines for the Safetify public safety platform.",
-    stars: 0,
-    url: "https://github.com/AbubakarAbdulrahim/safetify_backend",
-    homepage: null,
-  },
-  {
-    name: "FYP_Assistant",
-    language: "Python",
-    description: "Final Year Project assistant utility for academic paper synthesis and experimental data analysis.",
-    stars: 0,
-    url: "https://github.com/AbubakarAbdulrahim/FYP_Assistant",
-    homepage: null,
-  },
-];
 
 export const EDUCATION_AND_CERTS: EducationCertification[] = [
   {
@@ -462,28 +267,18 @@ export const EDUCATION_AND_CERTS: EducationCertification[] = [
     institution: "Bayero University Kano (BUK)",
     period: "Jan 2021 – Feb 2026",
     details:
-      "Graduated with Distinction (CGPA 4.44 / 5.00, Second Class Honours). Active Member: Google Developer Student Clubs (GDSC BUK) and MSSN Faculty of Computing. Capstone: Safetify (Real-Time Safety & Incident Response System).",
-    badge: "ACADEMIC DISTINCTION",
+      "Graduated with 4.44 / 5.00 CGPA (Second Class Honours: Upper Division). Final-Year Capstone Project: Safetify (Real-Time Safety & Incident Response System).",
+    badge: "Degree",
     type: "education",
-    gradeOrScore: "CGPA 4.44 / 5.00",
-  },
-  {
-    title: "B.Sc. Computer Science",
-    institution: "National Open University of Nigeria (NOUN)",
-    period: "Mar 2023 – Present (Ongoing)",
-    details:
-      "Dual-enrollment track deepening theoretical foundations in Advanced Algorithms, Computational Theory, and Operating Systems while actively engineering commercial mobile software.",
-    badge: "DUAL DEGREE",
-    type: "education",
-    gradeOrScore: "Active Standing",
+    gradeOrScore: "4.44 / 5.00 CGPA",
   },
   {
     title: "Certified Cybersecurity Analyst",
     institution: "Cisco Networking Academy",
     period: "Issued Dec 2023",
     details:
-      "Comprehensive certification covering Threat Mitigation, Network Architecture Security, Cryptography, Defensive Controls, and Security Operations Center (SOC) protocols.",
-    badge: "INDUSTRY CREDENTIAL",
+      "Comprehensive certification covering network defense, threat analysis, access control, and security operations.",
+    badge: "Certification",
     type: "certification",
     gradeOrScore: "Verified Credential",
   },
@@ -492,9 +287,24 @@ export const EDUCATION_AND_CERTS: EducationCertification[] = [
     institution: "Cisco Networking Academy",
     period: "Issued Jan 2024",
     details:
-      "Credential covering data analytics pipelines, statistical modeling, machine learning workflows, and data-driven decision frameworks.",
-    badge: "INDUSTRY CREDENTIAL",
+      "Credential covering data analytics pipelines, statistical modeling, and data-driven decision frameworks.",
+    badge: "Certification",
     type: "certification",
     gradeOrScore: "Verified Credential",
+  },
+];
+
+export const VOLUNTEERING = [
+  {
+    role: "Active Member",
+    organization: "Google Developer Student Clubs (GDSC BUK)",
+    period: "Feb 2022 – Feb 2026",
+    description: "Mentored fellow students in Flutter development, clean code practices, and Firebase integrations.",
+  },
+  {
+    role: "Active Member",
+    organization: "MSSN BUK (Faculty of Computing)",
+    period: "Feb 2022 – Jan 2026",
+    description: "Organized peer study groups, academic tutorial sessions, and technical support workshops.",
   },
 ];

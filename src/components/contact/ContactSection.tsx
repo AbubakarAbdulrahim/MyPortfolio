@@ -2,36 +2,38 @@
 
 import { useState } from "react";
 import { useForm, ValidationError } from "@formspree/react";
-import { Download, ArrowUpRight, Copy, Check, AlertCircle, Loader2 } from "lucide-react";
+import { Download, ArrowUpRight, Copy, Check, AlertCircle, Loader2, Mail, Github, Linkedin } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PERSONAL_INFO } from "@/data/portfolioData";
+import { useToast } from "@/components/ui/Toast";
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
+  const { toast } = useToast();
   const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID || "mzezbayq";
   const [state, handleSubmit, reset] = useForm(formId);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.email);
     setCopied(true);
+    toast("Email copied to clipboard");
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section id="contact" className="py-16 sm:py-20 px-4 sm:px-6 max-w-6xl mx-auto">
       <SectionHeading
-        index="10"
-        tag="Inquiries"
-        title="Get in Touch"
-        subtitle="Available for full-time engineering roles and high-value mobile contracts."
+        tag="Contact"
+        title="Let's build something useful."
+        subtitle="I'm open to software engineering roles, mobile contracts, and technical collaborations."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Direct Channels (5 cols) */}
+        {/* Left Column: Direct Channels & Links (5 cols) */}
         <div className="md:col-span-5 space-y-4">
           <div className="card p-6 space-y-4">
             <div>
-              <span className="text-xs font-mono text-muted block mb-1">DIRECT EMAIL</span>
+              <span className="text-xs font-mono text-muted block mb-1">Email Address</span>
               <div className="flex items-center justify-between gap-2">
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
@@ -56,17 +58,24 @@ export function ContactSection() {
                 rel="noreferrer"
                 className="flex items-center justify-between text-muted hover:text-foreground transition-colors py-1"
               >
-                <span>GitHub (github.com/{PERSONAL_INFO.githubHandle})</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span className="flex items-center gap-1.5">
+                  <Github className="w-3.5 h-3.5" />
+                  <span>GitHub ({PERSONAL_INFO.githubHandle})</span>
+                </span>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
               </a>
+
               <a
                 href={PERSONAL_INFO.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center justify-between text-muted hover:text-foreground transition-colors py-1"
               >
-                <span>LinkedIn Profile</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <span className="flex items-center gap-1.5">
+                  <Linkedin className="w-3.5 h-3.5" />
+                  <span>LinkedIn Profile</span>
+                </span>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-60" />
               </a>
             </div>
 
@@ -77,13 +86,13 @@ export function ContactSection() {
                 className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg border border-surface-border text-foreground text-xs font-medium hover:border-foreground/40 transition-colors"
               >
                 <Download className="w-3.5 h-3.5 text-muted" />
-                <span>Download Curriculum Vitae (PDF)</span>
+                <span>Download CV (PDF)</span>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Wired Formspree Form (7 cols) */}
+        {/* Right Column: Formspree Form (7 cols) */}
         <div className="md:col-span-7">
           <div className="card p-6 sm:p-8">
             {state.succeeded ? (
@@ -91,9 +100,9 @@ export function ContactSection() {
                 <div className="w-9 h-9 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto text-accent">
                   <Check className="w-4 h-4" />
                 </div>
-                <h3 className="text-lg font-semibold text-foreground">Message Dispatched</h3>
+                <h3 className="text-lg font-semibold text-foreground">Message Sent</h3>
                 <p className="text-xs sm:text-sm text-muted max-w-md mx-auto leading-relaxed">
-                  Thank you. Your message has been successfully routed to Abubakar via Formspree. You will receive a response within 24 hours.
+                  Thank you. Your message has been delivered to Abubakar via Formspree.
                 </p>
                 <div className="pt-3">
                   <button
@@ -102,7 +111,7 @@ export function ContactSection() {
                     }}
                     className="px-4 py-2 rounded-lg border border-surface-border text-xs font-mono text-muted hover:text-foreground transition-colors"
                   >
-                    Send Another Note
+                    Send Another Message
                   </button>
                 </div>
               </div>
@@ -183,7 +192,7 @@ export function ContactSection() {
                   {state.submitting ? (
                     <>
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                      <span>Dispatching Message...</span>
+                      <span>Sending Message...</span>
                     </>
                   ) : (
                     <span>Send Message</span>
@@ -197,4 +206,3 @@ export function ContactSection() {
     </section>
   );
 }
-

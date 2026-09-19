@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { X, Download, FileText, ArrowUpRight } from "lucide-react";
+import { X, Download } from "lucide-react";
 import { PERSONAL_INFO } from "@/data/portfolioData";
 
 interface ResumeModalProps {
@@ -60,7 +60,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               SUMMARY
             </span>
             <p className="text-foreground leading-relaxed">
-              Software Engineer specializing in high-concurrency mobile applications with Flutter and scalable backend architectures with Django, Firebase, and PostgreSQL. Proven production impact in fintech and real-time emergency dispatch.
+              Mobile Developer and IT Professional specializing in Flutter, Firebase, and web technologies. Experienced in building real-time mobile applications, authentication workflows, and practical digital products.
             </p>
           </div>
 
@@ -72,24 +72,24 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between items-baseline text-foreground font-medium">
-                  <span>B.Sc. Information Technology (First Class Equiv)</span>
+                  <span>B.Sc. Information Technology</span>
                   <span className="text-xs font-mono text-accent">CGPA 4.44 / 5.00</span>
                 </div>
-                <span className="text-xs text-muted block">Bayero University Kano (BUK)</span>
+                <span className="text-xs text-muted block">Bayero University Kano (BUK) — Second Class Honours</span>
               </div>
               <div>
                 <div className="flex justify-between items-baseline text-foreground font-medium">
-                  <span>B.Sc. Computer Science (Dual-Enrollment)</span>
-                  <span className="text-xs font-mono text-muted">Ongoing</span>
-                </div>
-                <span className="text-xs text-muted block">National Open University of Nigeria</span>
-              </div>
-              <div>
-                <div className="flex justify-between items-baseline text-foreground font-medium">
-                  <span>Certified Cybersecurity Professional</span>
+                  <span>Certified Cybersecurity Analyst</span>
                   <span className="text-xs font-mono text-accent">Verified</span>
                 </div>
-                <span className="text-xs text-muted block">Cisco Networking Academy (2023)</span>
+                <span className="text-xs text-muted block">Cisco Networking Academy (Dec 2023)</span>
+              </div>
+              <div>
+                <div className="flex justify-between items-baseline text-foreground font-medium">
+                  <span>Certified Data Scientist</span>
+                  <span className="text-xs font-mono text-accent">Verified</span>
+                </div>
+                <span className="text-xs text-muted block">Cisco Networking Academy (Jan 2024)</span>
               </div>
             </div>
           </div>
@@ -102,29 +102,29 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between text-foreground font-medium">
-                  <span>Flutter Developer • Tubali Fintech</span>
-                  <span className="text-xs font-mono text-muted">Feb 2026 – Present</span>
+                  <span>Mobile Application Developer • Tubali Digital</span>
+                  <span className="text-xs font-mono text-muted">Sep 2026 – Present</span>
                 </div>
                 <p className="text-xs text-muted mt-0.5">
-                  Migrated auth flows to OTP resulting in +38% onboarding conversion with zero downtime.
+                  Developing Flutter fintech applications, authentication workflows, and API integrations.
                 </p>
               </div>
               <div>
                 <div className="flex justify-between text-foreground font-medium">
-                  <span>Mobile Developer • Hausasoft Technologies</span>
+                  <span>Founder & Mobile Developer • Hausasoft Technologies</span>
                   <span className="text-xs font-mono text-muted">Dec 2025 – Present</span>
                 </div>
                 <p className="text-xs text-muted mt-0.5">
-                  Built geofenced real-time incident reporting app with live alerts (~30% faster response).
+                  Built Safetify incident reporting mobile app, Hausasoft E-Learn, and instructed developer bootcamps.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Languages */}
+          {/* Location & Status */}
           <div className="pt-4 border-t border-surface-border flex items-center justify-between text-xs font-mono">
-            <span>LANGUAGES: English (Fluent), Arabic (Professional), Hausa (Native)</span>
-            <span>Kano, Nigeria</span>
+            <span>LOCATION: Kano, Nigeria</span>
+            <span className="text-accent">Available for Opportunities</span>
           </div>
         </div>
       </div>
