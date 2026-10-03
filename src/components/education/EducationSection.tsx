@@ -1,75 +1,45 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
-
-const CREDENTIALS = [
-  {
-    period: "2021 – 2026",
-    type: "Academic Degree",
-    title: "B.Sc. in Information Technology",
-    institution: "Bayero University Kano (BUK)",
-    standing: "4.44 / 5.00 CGPA • Second Class Upper",
-    details:
-      "Four-year honors curriculum in computer science and IT principles, distributed systems, mobile development, and relational database architecture. Final-year Capstone: Safetify (Real-Time Emergency Dispatch System).",
-    tags: ["Mobile Systems", "Database Design", "Distributed Systems", "Software Engineering"],
-  },
-  {
-    period: "Issued Dec 2023",
-    type: "Certification",
-    title: "Certified Cybersecurity Analyst",
-    institution: "Cisco Networking Academy",
-    standing: "Verified Industry Credential",
-    details:
-      "Comprehensive certification covering network defense architectures, threat analysis, access control, and endpoint security protocols.",
-    tags: ["Network Defense", "Threat Analysis", "Access Control", "Security Protocols"],
-  },
-  {
-    period: "Issued Jan 2024",
-    type: "Certification",
-    title: "Certified Data Scientist",
-    institution: "Cisco Networking Academy",
-    standing: "Verified Industry Credential",
-    details:
-      "Professional credential covering data analytics pipelines, statistical modeling, and data-driven decision frameworks for software systems.",
-    tags: ["Data Pipelines", "Statistical Modeling", "Data Analysis", "Decision Frameworks"],
-  },
-];
+import { EDUCATION_AND_CERTS, LEADERSHIP_AND_COMMUNITY } from "@/data/portfolioData";
+import { CheckCircle2 } from "lucide-react";
 
 export function EducationSection() {
   return (
-    <section id="education" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section id="education" className="py-20 sm:py-28 px-4 sm:px-6 max-w-6xl mx-auto">
       <SectionHeading
-        tag="Credentials"
+        tag="Academic & Industry Honors"
         title="Education & Certifications"
-        subtitle="Academic degree from Bayero University Kano and verified industry credentials."
+        subtitle="Foundational degree in Information Technology from Bayero University Kano alongside verified industry credentials."
       />
 
       <div className="space-y-6">
-        {CREDENTIALS.map((item) => (
+        {EDUCATION_AND_CERTS.map((item) => (
           <div
             key={item.title}
-            className="rounded-2xl border border-surface-border bg-surface/50 hover:bg-surface/80 p-6 sm:p-8 transition-all duration-300 hover:border-accent/40 group shadow-sm"
+            className="card p-6 sm:p-8 transition-all duration-300 hover:border-surface-border-hover group"
           >
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
-              {/* Left Rail: Timeline & Credential Type (4 cols) */}
-              <div className="md:col-span-4 space-y-1.5">
-                <div className="flex items-center gap-2 text-xs font-mono text-muted">
+              {/* Left Column: Timeline, Institution & Type (4 cols) */}
+              <div className="md:col-span-4 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-medium text-muted">
                   <span>{item.period}</span>
                   <span>•</span>
-                  <span className="text-foreground font-medium">{item.type}</span>
+                  <span className="text-foreground">{item.badge}</span>
                 </div>
                 <div className="text-sm font-semibold text-foreground tracking-tight">
                   {item.institution}
                 </div>
               </div>
 
-              {/* Right Column: Title, Standing, Details & Tech Button Pills (8 cols) */}
-              <div className="md:col-span-8 space-y-3.5">
+              {/* Right Column: Title, Grade/Standing, Details (8 cols) */}
+              <div className="md:col-span-8 space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
                   <h3 className="text-base sm:text-lg font-semibold text-foreground tracking-tight group-hover:text-accent transition-colors">
                     {item.title}
                   </h3>
-                  {item.standing && (
-                    <span className="text-xs font-mono text-accent font-medium shrink-0">
-                      {item.standing}
+                  {item.gradeOrScore && (
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent shrink-0">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-brand-green" />
+                      <span>{item.gradeOrScore}</span>
                     </span>
                   )}
                 </div>
@@ -77,24 +47,31 @@ export function EducationSection() {
                 <p className="text-xs sm:text-sm text-muted leading-relaxed font-normal">
                   {item.details}
                 </p>
-
-                {/* Button-like Technology Badges */}
-                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-surface-border/60">
-                  {item.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded text-[11px] font-mono bg-background text-muted border border-surface-border hover:border-surface-border/80 hover:text-foreground transition-colors inline-flex items-center cursor-default"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
+
+      {/* University Leadership & Community Involvement from CV */}
+      <div className="mt-14 pt-8 border-t border-surface-border">
+        <span className="text-xs font-semibold tracking-wider text-muted uppercase block mb-4">
+          Leadership & Community Involvement
+        </span>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {LEADERSHIP_AND_COMMUNITY.map((item) => (
+            <div key={item.organization} className="p-4 rounded-xl border border-surface-border bg-surface/50 space-y-1">
+              <div className="flex items-center justify-between text-xs">
+                <span className="font-semibold text-foreground truncate">{item.organization}</span>
+              </div>
+              <span className="text-[11px] text-accent block">{item.period}</span>
+              <p className="text-xs text-muted leading-relaxed pt-1">
+                <strong>{item.role}:</strong> {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
-

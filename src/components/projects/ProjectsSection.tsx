@@ -3,78 +3,85 @@
 import Image from "next/image";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FEATURED_PROJECTS } from "@/data/portfolioData";
-import { ArrowUpRight, Github, ExternalLink, Check } from "lucide-react";
+import { ArrowUpRight, Github, ExternalLink, ShieldCheck, CheckCircle2, Download } from "lucide-react";
 
 export function ProjectsSection() {
+  const flagshipProjects = FEATURED_PROJECTS.filter((p) => p.isFlagship);
+  const secondaryProjects = FEATURED_PROJECTS.filter((p) => !p.isFlagship);
+
   return (
-    <section id="projects" className="py-16 sm:py-24 px-4 sm:px-6 max-w-6xl mx-auto">
+    <section id="projects" className="py-20 sm:py-28 px-4 sm:px-6 max-w-6xl mx-auto">
       <SectionHeading
-        tag="Projects"
-        title="Featured Work"
-        subtitle="Production mobile apps, campus platforms, and developer tools built with practical engineering."
+        tag="Engineering Work"
+        title="Featured Projects & Research"
+        subtitle="Production mobile systems, BUK capstone research, and civic applications designed for reliability in emerging markets."
       />
 
-      <div className="space-y-12 sm:space-y-16">
-        {FEATURED_PROJECTS.map((project, idx) => (
+      {/* Flagship Showcases (Differentiated Scale & Depth) */}
+      <div className="space-y-16 sm:space-y-24">
+        {flagshipProjects.map((project) => (
           <article
             key={project.id}
-            className="card p-6 sm:p-8 lg:p-10 transition-all duration-300 hover:border-accent/40 group"
+            className="card p-6 sm:p-8 lg:p-12 transition-all duration-300 hover:border-surface-border-hover group shadow-card"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-              {/* Visual Preview (5 cols on lg) */}
-              <div className="lg:col-span-5 order-1">
-                {project.image ? (
-                  <div className="relative rounded-xl border border-surface-border bg-surface overflow-hidden aspect-[16/10] shadow-sm group-hover:border-accent/30 transition-colors">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Product Visual Frame (6 cols on lg) */}
+              <div className="lg:col-span-6 order-1">
+                <div className="relative rounded-2xl border border-surface-border bg-surface overflow-hidden aspect-[16/10] shadow-card group-hover:border-surface-border-hover transition-colors">
+                  {project.image ? (
                     <Image
                       src={project.image}
-                      alt={`${project.title} Preview`}
+                      alt={`${project.title} Interface`}
                       fill
-                      sizes="(max-width: 1024px) 100vw, 460px"
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 540px"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80" />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs font-mono text-white/90">
-                      <span className="font-semibold text-xs tracking-tight">{project.title}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-black/60 backdrop-blur-sm border border-white/10 text-accent">
-                        {project.category}
-                      </span>
+                  ) : (
+                    <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center">
+                      <span className="text-lg font-semibold text-foreground">{project.title}</span>
+                      <span className="text-xs text-muted mt-1">{project.tagline}</span>
                     </div>
-                  </div>
-                ) : (
-                  <div className="rounded-xl border border-surface-border bg-surface/50 p-8 flex flex-col justify-center items-center text-center aspect-[16/10]">
-                    <span className="text-base font-semibold text-foreground tracking-tight">
-                      {project.title}
-                    </span>
-                    <span className="text-xs text-muted mt-1">{project.tagline}</span>
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
 
-              {/* Content & Details (7 cols on lg) */}
-              <div className="lg:col-span-7 order-2 space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono text-muted">
-                    <span className="text-accent font-medium">{project.category}</span>
-                    {project.isFlagship && (
-                      <>
-                        <span>•</span>
-                        <span className="text-foreground font-mono text-[11px] px-2 py-0.5 rounded bg-accent/10 border border-accent/20 text-accent">
-                          Flagship
-                        </span>
-                      </>
-                    )}
+              {/* Editorial Architecture Narrative (6 cols on lg) */}
+              <div className="lg:col-span-6 order-2 space-y-5">
+                {/* Meta & Actions */}
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-semibold tracking-wider text-accent uppercase">
+                      {project.category}
+                    </span>
+                    <span className="text-xs text-muted">•</span>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
+                      <ShieldCheck className="w-3 h-3" />
+                      <span>Flagship</span>
+                    </span>
                   </div>
 
-                  {/* Actions */}
-                  <div className="flex items-center gap-2.5">
+                  {/* External Links */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    {project.appDownloadUrl && (
+                      <a
+                        href={project.appDownloadUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-brand-green/10 text-brand-green border border-brand-green/30 font-medium hover:bg-brand-green hover:text-white transition-all"
+                        title="Download Mobile App APK (Google Drive)"
+                      >
+                        <Download className="w-3 h-3" />
+                        <span>Get APK</span>
+                      </a>
+                    )}
                     {project.liveUrl && (
                       <a
                         href={project.liveUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
                       >
-                        <span>Live Demo</span>
+                        <span>Live Console</span>
                         <ExternalLink className="w-3 h-3" />
                       </a>
                     )}
@@ -83,47 +90,67 @@ export function ProjectsSection() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-mono border border-surface-border text-foreground hover:border-foreground/40 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs bg-surface border border-surface-border text-foreground hover:border-surface-border-hover hover:bg-surface-hover transition-all"
                       >
                         <Github className="w-3.5 h-3.5" />
-                        <span>Source</span>
+                        <span>Source Code</span>
                         <ArrowUpRight className="w-3 h-3 opacity-60" />
                       </a>
                     )}
                   </div>
                 </div>
 
+                {/* Title & Tagline */}
                 <div>
-                  <h3 className="text-2xl font-semibold text-foreground tracking-tight group-hover:text-accent transition-colors">
+                  <h3 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">
                     {project.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-muted font-normal mt-1 leading-relaxed">
+                  <p className="text-sm font-medium text-foreground/80 mt-1">
                     {project.subtitle}
                   </p>
                 </div>
 
-                {/* Problem & Built Narrative */}
-                <div className="space-y-2.5 pt-1 text-xs sm:text-sm text-muted leading-relaxed font-normal">
-                  <p>
-                    <strong className="text-foreground font-medium">The Problem: </strong>
+                {/* Problem Statement */}
+                <div className="space-y-1.5 text-xs sm:text-sm">
+                  <span className="font-semibold text-foreground uppercase tracking-wider text-[11px] block">
+                    The Problem
+                  </span>
+                  <p className="text-muted leading-relaxed font-normal">
                     {project.problem}
-                  </p>
-                  <p>
-                    <strong className="text-foreground font-medium">What I Built: </strong>
-                    {project.built}
                   </p>
                 </div>
 
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-surface-border">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded text-[11px] font-mono bg-background text-muted border border-surface-border hover:border-surface-border/80 hover:text-foreground transition-colors inline-flex items-center cursor-default"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                {/* Solution & Architecture */}
+                <div className="space-y-1.5 text-xs sm:text-sm">
+                  <span className="font-semibold text-foreground uppercase tracking-wider text-[11px] block">
+                    Engineering Solution
+                  </span>
+                  <p className="text-muted leading-relaxed font-normal">
+                    {project.solution}
+                  </p>
+                </div>
+
+                {/* Key Technical Highlights (Including CV Thesis metrics) */}
+                {project.architectureHighlights && project.architectureHighlights.length > 0 && (
+                  <div className="pt-2">
+                    <ul className="space-y-1.5">
+                      {project.architectureHighlights.map((highlight, hIdx) => (
+                        <li
+                          key={hIdx}
+                          className="flex items-start gap-2 text-xs text-foreground/90 leading-relaxed font-normal"
+                        >
+                          <CheckCircle2 className="w-3.5 h-3.5 text-brand-green shrink-0 mt-0.5" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Contextual Technologies */}
+                <div className="pt-3 border-t border-surface-border flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+                  <span className="font-medium text-foreground">Core Stack:</span>
+                  <span>{project.technology.join(" • ")}</span>
                 </div>
               </div>
             </div>
@@ -131,13 +158,98 @@ export function ProjectsSection() {
         ))}
       </div>
 
-      {/* GitHub Repository Footer Callout */}
-      <div className="mt-12 text-center">
+      {/* Secondary Projects Grid (2 Columns, Clean Microsoft/Apple Structure) */}
+      <div className="mt-16 sm:mt-24">
+        <div className="mb-8">
+          <span className="text-xs font-semibold tracking-wider text-muted uppercase block">
+            Additional Platforms & Industrial Placement Work
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {secondaryProjects.map((project) => (
+            <article
+              key={project.id}
+              className="card p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-surface-border-hover group"
+            >
+              <div className="space-y-5">
+                {/* Visual Preview */}
+                <div className="relative rounded-xl border border-surface-border bg-surface overflow-hidden aspect-[16/10] shadow-sm">
+                  {project.image && (
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 420px"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  )}
+                </div>
+
+                {/* Header & Category */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-medium text-accent">
+                    {project.category}
+                  </span>
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-muted hover:text-foreground transition-colors"
+                    >
+                      <Github className="w-3.5 h-3.5" />
+                      <span>Code</span>
+                      <ArrowUpRight className="w-3 h-3 opacity-60" />
+                    </a>
+                  )}
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs text-foreground/80 mt-1 font-medium">
+                    {project.subtitle}
+                  </p>
+                  <p className="mt-3 text-xs sm:text-sm text-muted leading-relaxed font-normal">
+                    {project.problem}
+                  </p>
+                </div>
+
+                {/* Architecture Highlights */}
+                {project.architectureHighlights && (
+                  <ul className="space-y-1.5 pt-1">
+                    {project.architectureHighlights.map((highlight, hIdx) => (
+                      <li
+                        key={hIdx}
+                        className="flex items-start gap-2 text-xs text-foreground/80 leading-relaxed font-normal"
+                      >
+                        <span className="text-accent text-xs leading-none mt-1 shrink-0">•</span>
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              {/* Technologies */}
+              <div className="pt-4 mt-6 border-t border-surface-border text-xs text-muted">
+                <span className="font-medium text-foreground">Stack: </span>
+                <span>{project.technology.join(" • ")}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      {/* GitHub Callout */}
+      <div className="mt-14 text-center">
         <a
           href="https://github.com/AbubakarAbdulrahim?tab=repositories"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 text-xs font-mono text-muted hover:text-foreground transition-colors py-2 px-4 rounded-full border border-surface-border hover:border-foreground/30 bg-surface/50"
+          className="inline-flex items-center gap-2 text-xs font-medium text-muted hover:text-foreground transition-colors py-2.5 px-5 rounded-full border border-surface-border hover:border-surface-border-hover bg-surface hover:bg-surface-hover shadow-subtle"
         >
           <Github className="w-3.5 h-3.5 text-accent" />
           <span>Explore all open-source repositories on GitHub</span>
